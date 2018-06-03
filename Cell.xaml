@@ -1,0 +1,176 @@
+﻿<UserControl x:Class="Supaplex.Cell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:supaplex="clr-namespace:Supaplex"       
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" DataContext="{Binding}">
+
+    <Grid x:Name="Grid" Width="30" Height="30" supaplex:AnimationHelper.AnimationDuration="0:0:.2">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <TranslateTransform/>
+                <RotateTransform CenterX="20" CenterY="40"/>
+                <ScaleTransform/>
+                <ScaleTransform CenterY="30" CenterX="30"/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Grid.Style>
+            <Style>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding MovingAnimationDir}" Value="R">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Name="MoveRight">
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[0].(TranslateTransform.X)"
+                                            From="0" To="30" Duration="0:0:.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="MoveRight"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding MovingAnimationDir}" Value="U">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Name="MoveUp">
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[0].(TranslateTransform.Y)"
+                                            From="0" To="-30" Duration="0:0:.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="MoveUp"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding MovingAnimationDir}" Value="L">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Name="MoveLeft">
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[0].(TranslateTransform.X)"
+                                            From="0" To="-30" Duration="0:0:.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="MoveLeft"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding MovingAnimationDir}" Value="D">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Name="MoveDown">
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[0].(TranslateTransform.Y)"
+                                            From="0" To="30" Duration="0:0:.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="MoveDown"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding MovingAnimationDir}" Value="DL">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Name="MoveDownLeft">
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[1].(RotateTransform.Angle)"
+                                            From="0" To="-90" Duration="0:0:.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="MoveDownLeft"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding MovingAnimationDir}" Value="DR">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Name="MoveDownRight">
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[1].(RotateTransform.Angle)"
+                                            From="0" To="90" Duration="0:0:.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="MoveDownRight"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding MovingAnimationDir}" Value="SU">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Name="SqueezeToUp">
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[2].(ScaleTransform.ScaleY)"
+                                            From="1" To="0" Duration="0:0:.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="SqueezeToUp"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding MovingAnimationDir}" Value="SD">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Name="SqueezeToDown">
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[3].(ScaleTransform.ScaleY)"
+                                            From="1" To="0" Duration="0:0:.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="SqueezeToDown"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding MovingAnimationDir}" Value="SL">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Name="SqueezeToLeft">
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[2].(ScaleTransform.ScaleX)"
+                                            From="1" To="0" Duration="0:0:.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="SqueezeToLeft"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+
+                    <DataTrigger Binding="{Binding MovingAnimationDir}" Value="SR">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Name="SqueezeToRight">
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.(TransformGroup.Children)[3].(ScaleTransform.ScaleX)"
+                                            From="1" To="0" Duration="0:0:.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="SqueezeToRight"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+        <Image Source="{Binding Img}"></Image>
+    </Grid>
+</UserControl>

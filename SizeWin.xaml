@@ -1,0 +1,33 @@
+﻿<Window x:Class="Supaplex.SizeWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:supaplex="clr-namespace:Supaplex"
+        Title="SizeWin" MaxHeight="{Binding WinMaxH, Mode=TwoWay}" MaxWidth="{Binding WinMaxW, Mode=TwoWay}" 
+        Width="{Binding WinW, Mode=TwoWay}" Height="{Binding WinH, Mode=TwoWay}">
+    <Window.DataContext>
+        <supaplex:ConstructViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" ZIndex="1" >
+            <Button   Command="{Binding WinSizedCommand}" >OK</Button>
+        </StackPanel>
+        <ItemsControl ItemsSource="{Binding Model.Data}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ItemsControl ItemsSource="{Binding}" BorderThickness="0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Image Width="30" Height="30" Source="{Binding Img}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Window>
